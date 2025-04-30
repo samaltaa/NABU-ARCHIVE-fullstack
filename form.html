@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>
+            Image Submission
+        </title>
+    </head>
+    <body>
+        <h2>Upload Image</h2>
+        <form action="http://127.0.0.1:8000/upload/" method="POST"
+            enctype="multipart/form-data">
+            <label>
+                the chosen file will be saved to server: 
+            </label>
+
+            <input type="file" id="file" name="file" 
+            accept=".jpg, .jpeg">
+            <br><br>
+            
+            <input type="submit" value="Upload">
+        </form>
+    </body>
+</html>
