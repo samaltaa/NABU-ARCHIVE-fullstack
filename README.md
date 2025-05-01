@@ -74,7 +74,7 @@ Here’s what it looks like in action:
 ## 🧬 Future Ideas
 [x] = completed
 
-- 🧾 expand form to include full name, dob, ID number, image
+- 🧾 expand form to include full name, dob, image [x]
 - 🧠 Auto-generate unique filenames to prevent overwrites
 - ☁️ Integrate a database to upload the formdata [x]
 - Integrate CRUD capabalities [x]
