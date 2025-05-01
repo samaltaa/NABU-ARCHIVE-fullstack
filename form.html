@@ -1,64 +1,93 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Image Submission</title>
-        <style>
-            #preview {
-                max-width: 400px;
-                max-height: 300px;
-                display: none;
-                margin-top: 20px;
-            }
-        </style>
-    </head>
-    <body>
-        <h2>Upload Image</h2>
-        <form id="upload-form" action="http://127.0.0.1:8000/upload/" method="POST" enctype="multipart/form-data">
-            <label>The chosen file will be saved to server:</label>
-            <input type="file" id="file" name="file" accept=".jpg, .jpeg">
-            <br><br>
-            <input type="submit" value="Upload">
-        </form>
-        <h3>Uploaded image:</h3>
-        <img id="preview" alt="Uploaded image preview">
+<head>
+    <title>Subject Submission</title>
+    <style>
+        .card {
+            border: 1px solid #ccc;
+            padding: 12px;
+            margin-top: 10px;
+            max-width: 300px;
+        }
+
+        .card img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h2>Submit New Subject</h2>
+    <form id="subject-form" enctype="multipart/form-data">
         
-        <script>
-            document.getElementById("upload-form").addEventListener("submit", async function(e) {
-                e.preventDefault(); // stop normal form submission
+        <label>First Name:</label><br>
+        <input type="text" name="first_name" required><br><br>
 
-                const form = e.target;
-                const fileInput = document.getElementById("file");
-                
-                if (!fileInput.files || fileInput.files.length === 0) {
-                    alert("Please select a file first");
-                    return;
-                }
-                
-                const formData = new FormData();
-                formData.append("file", fileInput.files[0]);
+        <label>Last Name:</label><br>
+        <input type="text" name="last_name" required><br><br>
 
-                try {
-                    const response = await fetch("http://127.0.0.1:8000/upload/", {
-                        method: "POST",
-                        body: formData
-                    });
+        <label>Date of Birth:</label><br>
+        <input type="date" name="dob" required><br><br>
 
-                    const result = await response.json();
-                    
-                    if (result.url) {
-                        const img = document.getElementById("preview");
-                        // Make sure to use the full URL with the server address
-                        img.src = "http://127.0.0.1:8000" + result.url;
-                        img.style.display = "block";
-                        console.log("Image URL set to:", img.src);
-                    } else {
-                        alert("Upload successful, but no URL returned: " + JSON.stringify(result));
-                    }
-                } catch (error) {
-                    console.error("Error during upload:", error);
-                    alert("Upload failed: " + error.message);
-                }
+        <label>Upload Image:</label><br>
+        <input type="file" name="image" accept="image/*" required><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <h3>Subjects:</h3>
+    <div id="subjects-container"></div>
+
+    <script>
+        const form = document.getElementById("subject-form");
+        const container = document.getElementById("subjects-container");
+
+        form.addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+
+            const response = await fetch("http://127.0.0.1:8000/subjects/", {
+                method: "POST",
+                body: formData
             });
-        </script>
-    </body>
+
+            if (response.ok) {
+                alert("Subject added!");
+                form.reset();
+                loadSubjects(); // refresh card list
+            } else {
+                const err = await response.json();
+                alert("Error: " + err.detail);
+            }
+        });
+
+        async function loadSubjects() {
+            const res = await fetch("http://127.0.0.1:8000/subjects/");
+            const data = await res.json();
+
+            container.innerHTML = "";
+            data.forEach(subject => {
+                const card = document.createElement("div");
+                card.className = "card";
+
+                const img = document.createElement("img");
+                if (subject.image) {
+                    img.src = `data:image/jpeg;base64,${subject.image}`;
+                    card.appendChild(img);
+                }
+
+                card.innerHTML += `
+                    <strong>${subject.first_name} ${subject.last_name}</strong><br>
+                    DOB: ${subject.dob}<br>
+                    ID: ${subject.id}<br>
+                `;
+                
+                container.appendChild(card);
+            });
+        }
+
+        loadSubjects(); // Load on page load
+    </script>
+</body>
 </html>

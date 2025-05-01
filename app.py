@@ -1,10 +1,11 @@
-from fastapi import FastAPI, UploadFile, APIRouter, HTTPException
+from fastapi import FastAPI, UploadFile, APIRouter, HTTPException, Form, File
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from typing import List
 from  bson import ObjectId
 from models import Subject
 from motor.motor_asyncio import AsyncIOMotorClient
+import base64
 
 
 app = FastAPI()
@@ -38,15 +39,49 @@ except Exception as e:
 async def get_subjects():
     try:
         subjects = await collection.find().to_list(length=10)
-        return subjects #if it doesnt work use schema
+        result = []
+        for subject in subjects:
+            # Convert _id to string
+            subject["_id"] = str(subject["_id"])
+            
+            # Convert id to string if it exists and is not already a string
+            if "id" in subject and not isinstance(subject["id"], str):
+                subject["id"] = str(subject["id"])
+                
+            # Handle image if it's in bytes
+            if isinstance(subject.get("image"), bytes):
+                subject["image"] = base64.b64encode(subject["image"]).decode('utf-8')
+                
+            result.append(subject)
+        return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     
-@router.post("/subjects/")
-async def create_subject(new_subject: Subject):
+@app.post("/subjects/", response_model=Subject)
+async def add_subject(
+    id: str = Form(...),
+    first_name: str = Form(...),
+    last_name: str = Form(...),
+    dob: str = Form(...),
+    image: UploadFile = File(...),
+):
+    content = await image.read()
+    encoded_image = base64.b64encode(content).decode("utf-8")
+
     try:
-        result = await collection.insert_one(new_subject.dict())
-        return {"status_code": 200, "id": str(result.inserted_id)}
+        document = {
+            "id": id,
+            "first_name": first_name,
+            "last_name": last_name,
+            "dob": dob,
+            "image": encoded_image
+        }
+
+        result = await collection.insert_one(document)
+        
+        # Return the inserted document with the ID as a string
+        document["_id"] = str(result.inserted_id)
+        return document
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 

@@ -57,11 +57,15 @@ This project was built to explore:
 
 ---
 
-## 📸 Preview
+## 📸 Preview before implementation of future ideas
 
 Here’s what it looks like in action:
 
 ![App Screenshot](screenshots/upload_preview.png)
+
+## Preview after the implementation of future ideas 
+## and database integration
+![App Screenshot](screenshots/afterupdated.png)
 
 
 
