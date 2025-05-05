@@ -3,7 +3,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from typing import List
 from  bson import ObjectId
-from models import Subject
+from models import Subject, Address
 from motor.motor_asyncio import AsyncIOMotorClient
 import base64
 
@@ -20,7 +20,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-uri = "db uri"
+uri = "mongodb+srv://altagrasa80900:ZoaGJ6JncTaOoSrc@cluster0.q0yt2ex.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 
 # Create a new client and connect to the server
 client = AsyncIOMotorClient(uri)
@@ -62,9 +62,22 @@ async def add_subject(
     id: str = Form(...),
     first_name: str = Form(...),
     last_name: str = Form(...),
+    sex: str = Form(...),
+    street: str = Form(...),
+    city: str = Form(...),
+    state: str = Form(...),
+    zip_code: str = Form(...),
     dob: str = Form(...),
     image: UploadFile = File(...),
-):
+):  
+    if sex not in ["Male", "Female"]:
+        raise HTTPException(status_code=422, detail="Sex must be binary")
+
+    address = Address(
+        street=street, 
+        city=city, 
+        state=state,
+        zip_code=zip_code,)
     content = await image.read()
     encoded_image = base64.b64encode(content).decode("utf-8")
 
@@ -73,6 +86,8 @@ async def add_subject(
             "id": id,
             "first_name": first_name,
             "last_name": last_name,
+            "sex": sex,
+            "address": address.dict(),
             "dob": dob,
             "image": encoded_image
         }
@@ -81,7 +96,16 @@ async def add_subject(
         
         # Return the inserted document with the ID as a string
         document["_id"] = str(result.inserted_id)
-        return document
+        return Subject(
+            id=id,
+            first_name=first_name,
+            last_name=last_name,
+            sex=sex,
+            address=address,
+            dob=dob,
+            image=encoded_image
+        )
+
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 

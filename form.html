@@ -86,10 +86,28 @@
         <input type="text" name="id" required><br><br>
         <label class="labels">First Name:</label><br>
         <input type="text" name="first_name" required><br><br>
-
         <label class="labels">Last Name:</label><br>
         <input type="text" name="last_name" required><br><br>
-
+        <label class="labels">Sex:</label><br><br>
+        <select name="sex" required>
+            <option value="">
+                Select
+            </option>
+            <option value="Male">
+                Male
+            </option>
+            <option value="Female">
+                Female
+            </option>
+        </select><br><br>
+        <label class="labels">Street:</label><br><br>
+        <input type="text" name="street" required><br><br>
+        <label class="labels">City:</label><br><br>
+        <input type="text" name="city" required><br><br>
+        <label class="labels">State: </label><br><br>
+        <input type="text" name="state" required><br><br>
+        <label class="labels">Zip Code:</label><br><br>
+        <input type="text" name="zip_code" required><br><br>
         <label class="labels" >Date of Birth:</label><br>
         <input type="date" name="dob" required><br><br>
 
@@ -144,7 +162,12 @@
                 card.innerHTML += `
                     <strong>${subject.first_name} ${subject.last_name}</strong><br>
                     DOB: ${subject.dob}<br>
+                    Sex: ${subject.sex}<br>
                     ID: ${subject.id}<br>
+                    Street: ${subject.address.street}<br>
+                    City: ${subject.address.city}<br>
+                    State: ${subject.address.state}<br>
+                    Zip Code: ${subject.address.zip_code}<br>
                 `;
                 
                 container.appendChild(card);
