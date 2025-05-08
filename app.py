@@ -1,15 +1,15 @@
-from fastapi import FastAPI, UploadFile, APIRouter, HTTPException, Form, File
-from fastapi.staticfiles import StaticFiles
+from fastapi import FastAPI, UploadFile, APIRouter, HTTPException, Form, File 
 from fastapi.middleware.cors import CORSMiddleware
 from typing import List
 from  bson import ObjectId
 from models import Subject, Address
-from motor.motor_asyncio import AsyncIOMotorClient
 import base64
+from db import subjects_collection as collection
+from encodefaces import process_and_store_encodings
 
 
 app = FastAPI()
-router = APIRouter()
+router = APIRouter() 
 
 # Add CORS middleware to handle cross-origin requests
 app.add_middleware(
@@ -19,21 +19,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-uri = "mongodb+srv://altagrasa80900:ZoaGJ6JncTaOoSrc@cluster0.q0yt2ex.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-
-# Create a new client and connect to the server
-client = AsyncIOMotorClient(uri)
-
-db= client.subjectsdb
-collection = db.subjects
-
-# Send a ping to confirm a successful connection
-try:
-    client.admin.command('ping')
-    print("Pinged your deployment. You successfully connected to MongoDB!")
-except Exception as e:
-    print(e)
 
 @router.get("/subjects/", response_model=List[Subject])
 async def get_subjects():
@@ -93,9 +78,12 @@ async def add_subject(
         }
 
         result = await collection.insert_one(document)
+        mongo_id = result.inserted_id
         
+
         # Return the inserted document with the ID as a string
         document["_id"] = str(result.inserted_id)
+        await process_and_store_encodings(subject_oid=mongo_id, image_bytes=content)
         return Subject(
             id=id,
             first_name=first_name,
