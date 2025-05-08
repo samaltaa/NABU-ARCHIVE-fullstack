@@ -65,7 +65,7 @@ Here’s what it looks like in action:
 
 ## Preview after the implementation of future ideas and database integration
 ![App Screenshot](screenshots/afterupdated1.png)
-![App Screenshot](screenshots/afterupdated2.png)
+![App Screenshot](screenshots/afterupdated3.png)
 
 
 
