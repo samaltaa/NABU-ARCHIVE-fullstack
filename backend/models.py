@@ -16,3 +16,11 @@ class Subject(BaseModel):
     dob: str
     image: str = None
 
+class User(BaseModel):
+    first_name: str 
+    last_name: str
+    dob: str
+    email: str
+    password: str
+    phone: str
+
