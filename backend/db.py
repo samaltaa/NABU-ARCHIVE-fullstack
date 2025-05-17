@@ -8,6 +8,7 @@ client = AsyncIOMotorClient(uri)
 db= client.subjectsdb
 subjects_collection = db.subjects
 encodings_collection = db.encodings
+users_collection = db.users
 
 # Send a ping to confirm a successful connection
 try:
