@@ -6,6 +6,10 @@ from models import Subject, Address
 import base64
 from db import subjects_collection as collection
 from encodefaces import process_and_store_encodings
+from models import User, UserLogin
+from utils import *
+from db import users_collection
+from jose import JWTError, jwt
 
 
 app = FastAPI()
@@ -130,5 +134,26 @@ async def delete_subject(subject_id: str):
         return {"status_code": 200, "message": "Subject deleted successfully"}
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
+    
+@router.post("/register/")
+async def register(user: User):
+    existing_user = await users_collection.find_one({"email": user.email})
+    if existing_user:
+        raise HTTPException(status_code=400, detail="Email already registered")
+    
+    new_user = user.dict()
+    new_user["password"] = hash_password(new_user["password"])
+    await users_collection.insert_one(new_user)
+
+    return {"status_code": 200, "message": "User registered successfully", }
+
+@router.post("/login/")
+async def login(user: UserLogin):
+    found = await users_collection.find_one({"email": user.email})
+    if not found or not verify_password(user.password, found["password"]):
+        raise HTTPException(status_code=400, detail="Invalid credentials")
+    
+    token = create_token({"email": found["email"]})
+    return {"access_token": token}
 
 app.include_router(router)

@@ -17,15 +17,12 @@ class Subject(BaseModel):
     image: str = None
 
 class User(BaseModel):
-    first_name: str 
-    last_name: str
-    dob: str
-    email: EmailStr
+    
+    email: str
     password: str
-    phone: str
+    
 
 class UserLogin(BaseModel):
-    email: EmailStr
+    email: str
     password: str
 
-    
