@@ -1,9 +1,11 @@
-# Image-Upload-API [*//*]
+# NabuAya Archive [*//*]
 
 ```markdown 
-# 🚀 FastAPI Image Upload Interface
+# 🚀 Brief Description
 
-> A sleek, minimal file upload demo built with **FastAPI** and vanilla **HTML/CSS/JS** to learn full-stack file handling, static file serving, and dynamic image previews.
+> A fullstack registry and activity logging system integrating facial recognition, demographic data management, and secure API-based retrieval. Built with FastAPI, MongoDB, and a Next.js frontend, the application captures and stores facial encodings alongside personal identifiers such as name, date of birth, and address. Features include authenticated data access, CRUD operations, and facial match-based querying for demographic insights and activity tracking.
+
+
 
 ---
 
