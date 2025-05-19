@@ -40,16 +40,22 @@ function Grid() {
     if (subjects.length === 0) return <div className="flex justify-center items-center py-24">No subjects found</div>;
 
     return (
-        <div className="bg-white py-24 sm:py-32">
+        <div className="bg-white py-12 sm:py-12">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="mx-auto grid gap-20 xl:grid-cols-3">
                     <div className="max-w-xl">
-                        <h2 className="text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl">Our Subjects</h2>
+                        <h2 className="text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl">Browse Registered Individuals</h2>
                         <p className="mt-6 text-lg text-gray-600">
-                            Explore our comprehensive collection of subjects designed to enhance your learning experience and help you achieve your academic goals.
+                        This interface displays a complete list of 
+                        individuals enrolled in the system. Each entry 
+                        includes essential identifying information and 
+                        biometric reference data. Authorized personnel 
+                        may filter, search, and review subject records 
+                        for operational or administrative purposes.
                         </p>
                     </div>
-                    <ul role="list" className="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
+                    <span className="text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl mb-0" >Registered List:</span>
+                    <ul role="list" className="grid gap-x-4 gap-y-4 sm:grid-cols-2 sm:gap-y-4 xl:col-span-2">
                         {subjects.map((subject) => (
                             <li key={subject._id}>
                                 <SubjectCardPreview
