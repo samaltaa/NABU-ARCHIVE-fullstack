@@ -3,7 +3,7 @@
 ```markdown 
 # 🚀 Brief Description
 
-> A fullstack registry and activity logging system integrating facial recognition, demographic data management, and secure API-based retrieval. Built with FastAPI, MongoDB, and a Next.js frontend, the application captures and stores facial encodings alongside personal identifiers such as name, date of birth, and address. Features include authenticated data access, CRUD operations, and facial match-based querying for demographic insights and activity tracking.
+> A fullstack registry and activity logging system integrating facial <br>recognition, demographic data management, and secure API-based retrieval. <br>Built with FastAPI, MongoDB, and a Next.js frontend, the application captures and stores <br>facial encodings alongside personal identifiers such as name, date of birth, and address. <br>Features include authenticated data access, CRUD operations, and facial match-based querying <br>for demographic insights and activity tracking.
 
 
 
