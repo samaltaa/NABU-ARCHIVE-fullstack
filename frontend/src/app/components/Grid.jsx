@@ -3,11 +3,16 @@ import react from 'react';
 import { useState, useEffect } from 'react';
 import SubjectCardPreview from './SubjectCardPreview';
 import SubjectCard from './SubjectCard';
+import { useAuth } from '../context/AuthContext';
 
 function Grid(){
     const [subject, setSubject] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedSubject, setSelectedSubject] = useState(null);
+
+    const { isAuthenticated } = useAuth();
+
+    if (!isAuthenticated) return null;
 
     const handlePreviewClick = (subject) => {
         setSelectedSubject(subject);

@@ -4,11 +4,13 @@ import Grid from "./components/Grid";
 import ThemeProvider from "./providers/ThemeProvider";
 import Login from "./components/Login";
 
+
 export default function Home() {
   return (
     <div>
       <ThemeProvider>
-        <Login/>
+          //children components
+          <Login />
       </ThemeProvider>
     </div>
   );
