@@ -1,6 +1,11 @@
 from motor.motor_asyncio import AsyncIOMotorClient
+from dotenv import load_dotenv
+import os
 
-uri = "db uri"
+load_dotenv()
+
+
+uri = os.getenv("MONGO_URI")
 
 # Create a new client and connect to the server
 client = AsyncIOMotorClient(uri)
