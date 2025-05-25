@@ -16,7 +16,7 @@ export default function Login() {
         const response = await axios.post('http://127.0.0.1:8000/login/', {email, password});
         Cookies.set('token', response.data.access_token);
         //router.push('/dashboard')
-        window.location.href = '/dashboard'; //redirect to the page with subject list
+        window.location.href = '/pages/dashboard'; //redirect to the page with subject list
         //see if you can use router.push('/') instead of window.location.href
     }
 

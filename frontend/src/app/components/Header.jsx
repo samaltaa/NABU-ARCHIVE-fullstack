@@ -7,7 +7,7 @@ const Header = () => {
 
     const handleLogout = () => {
         logout();
-        window.location.href = '/landingpage';
+        window.location.href = '/pages/landingpage';
     }
 
     return(
@@ -26,7 +26,7 @@ const Header = () => {
                     </button>
                     </>
                 ) : (
-                    <button onClick={() => window.location.href = '/login'} className="bg-gray-600 px-4 py-2 rounded-md font-bold">
+                    <button onClick={() => window.location.href = '/pages/login'} className="bg-gray-600 px-4 py-2 rounded-md font-bold">
                         Sign In 
                     </button>
                 )}
