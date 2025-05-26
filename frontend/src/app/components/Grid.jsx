@@ -40,7 +40,7 @@ function Grid() {
     if (subjects.length === 0) return <div className="flex justify-center items-center py-24">No subjects found</div>;
 
     return (
-        <div className="bg-white py-12 sm:py-12">
+        <div className="relative z-0 bg-white py-12 sm:py-12">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="mx-auto grid gap-20 xl:grid-cols-3">
                     <div className="max-w-xl">

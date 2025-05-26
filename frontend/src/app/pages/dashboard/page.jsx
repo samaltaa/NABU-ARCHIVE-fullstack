@@ -11,9 +11,8 @@ export default function Dashboard(){
     if (!isAuthenticated) return <p>You do not hace access to this information</p>
 
     return(
-        <div>
+        <div className='h-full bg-white'>
             <Grid/>
-            <SubjectForm/>
         </div>
     )
 }

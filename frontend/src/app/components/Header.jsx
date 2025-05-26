@@ -11,12 +11,12 @@ const Header = () => {
     }
 
     return(
-        <div className="flex justify-between px-4 h-16 w-full bg-white border border-gray-300">
+        <div className="flex justify-between px-4 h-16 w-full bg-white border border-gray-300 fixed z-20">
             <div className="flex py-2 gap-2 ">
                 <a className="">
-                    <img className="w-8 h-8" src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/egyptian-symbol-falcon-granger.jpg"/>
+                    <img className="w-10 h-10" src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/egyptian-symbol-falcon-granger.jpg"/>
                 </a>
-                <p className="py-2 text-gray-500 font-bold">Nabu</p>
+                <p className="py-2 text-gray-500 font-bold text-xl">Nabu</p>
             </div>
             <div className="flex items-center gap-2 ml-4">
                 {isAuthenticated ? (
