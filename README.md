@@ -102,14 +102,14 @@ This setup allows seamless and secure user login/logout with persistent authenti
 - Encode faceial landmarks upon submit [x]
 - Reference one collection item inside another [x]
 - Authentication, cookies, and jwt implementation [x]
-- Build landing page []
-- Add header component []
-- Create route-based page layout []
+- Build landing page [x]
+- Add header component [x]
+- Create route-based page layout [x]
 - Set up centralized state management []
 - Add light/dark mode toggle []
-- Integrate WebSockets for real-time facial recognition []
-- Develop <CaptureImage /> component for live video and distance comparison []
-- Develop <SubjectDetails /> component to display extended subject data []
+- Integrate WebSockets for real-time facial recognition [x]
+- Develop <CaptureImage /> component for live video and distance comparison [x]
+- Develop <SubjectDetails /> component to display extended subject data [x]
 
 
 ## Bonus Features
