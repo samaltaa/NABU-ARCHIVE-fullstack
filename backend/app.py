@@ -11,6 +11,11 @@ from utils import *
 from db import users_collection
 from jose import JWTError, jwt
 
+#web socket imports
+from fastapi import WebSocket, WebSocketDisconnect
+from utils import recognize_face_from_frame
+import json
+
 
 app = FastAPI()
 router = APIRouter() 
@@ -155,5 +160,30 @@ async def login(user: UserLogin):
     
     token = create_token({"email": found["email"]})
     return {"access_token": token}
+
+# WebSovket endpoint 
+@router.websocket("/ws/recognize")
+async def websocket_recognize(websocket: WebSocket):
+    await websocket.accept()
+    
+    try:
+        while True:
+            data = await websocket.receive_text()
+            payload = json.loads(data)
+            image_b64 = payload.get("image")
+
+            if not image_b64:
+                await websocket.send_json({"error": "No image provided"})
+                continue
+
+            result = recognize_face_from_frame(image_b64)
+
+            if result:
+                await websocket.send_json(result)
+            else:
+                await websocket.send_json({"match": False, "message": "Unknown face"})
+
+    except WebSocketDisconnect:
+        print("WebSocket disconnected")
 
 app.include_router(router)
