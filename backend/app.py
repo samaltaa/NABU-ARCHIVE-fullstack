@@ -176,7 +176,7 @@ async def websocket_recognize(websocket: WebSocket):
                 await websocket.send_json({"error": "No image provided"})
                 continue
 
-            result = recognize_face_from_frame(image_b64)
+            result = await recognize_face_from_frame(image_b64)
 
             if result:
                 await websocket.send_json(result)
@@ -185,5 +185,8 @@ async def websocket_recognize(websocket: WebSocket):
 
     except WebSocketDisconnect:
         print("WebSocket disconnected")
+    except Exception as e:
+        print(f"Error in WebSocket: {e}")
+        await websocket.send_json({"error": "Internal server error"})
 
 app.include_router(router)

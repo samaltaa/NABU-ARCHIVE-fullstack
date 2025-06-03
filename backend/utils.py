@@ -36,7 +36,7 @@ def decode_image(base64_str):
     image_data = base64.b64decode(base64_str.split(",")[1])
     return np.array(Image.open(BytesIO(image_data)))
 
-def recognize_face_from_frame(image_b64):
+async def recognize_face_from_frame(image_b64):
     image = decode_image(image_b64)
     unknown_encodings = face_recognition.face_encodings(image)
     
@@ -45,7 +45,7 @@ def recognize_face_from_frame(image_b64):
     
     unknown_encoding = unknown_encodings[0]
 
-    subjects = list(subjects_collection.find({}))
+    subjects = await subjects_collection.find({}).to_list(length=None)
     known_encodings = [np.array(s["face_encoding"]) for s in subjects]
     names = [s["first_name"] for s in subjects]
 

@@ -12,6 +12,7 @@ const FaceCapture = () => {
         ws.onopen = () => console.log("WebSocket connection established");
         ws.onmessage = (msg) => {
             const data = JSON.parse(msg.data);
+            console.log("Received data:", data);
             setRecognizedFace(data);
         };
         ws.onerror = (err) => console.error("WS Error:", err);
@@ -34,8 +35,8 @@ const FaceCapture = () => {
             if (videoRef.current && canvasRef.current && socket?.readyState === 1) {
                 const ctx = canvasRef.current.getContext("2d");
                 ctx.drawImage(videoRef.current, 0, 0, 320, 240);
-                const frame = canvas.Ref.current.toDaraURL("image/jped");
-                socket.send(JSON.stringify({ frame }));
+                const frame = canvasRef.current.toDataURL("image/jpeg");
+                socket.send(JSON.stringify({ image: frame }));
             }
         }, 1500); // every 1.5 seconds
 
@@ -50,10 +51,10 @@ const FaceCapture = () => {
         <p className="text-gray-400">Capture subject face for recognition</p>
       </div>
       <video ref={videoRef} autoPlay playsInline width="320" height="240" />
-      <canvas ref={canvasRef} width="320" height="240" className="hidden" />
+      <canvas ref={canvasRef} width="420" height="340" className="hidden" />
       <div className="mt-4 text-lg">
         {recognizedFace ? (
-          <p className="text-green-600">User: {recognizedUser.name}</p>
+          <p className="text-green-600">Subject: {recognizedFace.name}</p>
         ) : (
           <p className="text-gray-500">No match</p>
         )}
