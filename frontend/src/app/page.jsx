@@ -12,7 +12,6 @@ export default function Home() {
     <div>
       <ThemeProvider>
           <Login />
-          <FaceCapture/>
       </ThemeProvider>
     </div>
   );

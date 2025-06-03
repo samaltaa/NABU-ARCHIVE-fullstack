@@ -1,7 +1,7 @@
 from fastapi import FastAPI, UploadFile, APIRouter, HTTPException, Form, File 
 from fastapi.middleware.cors import CORSMiddleware
 from typing import List
-from  bson import ObjectId
+from bson import ObjectId
 from models import Subject, Address
 import base64
 from db import subjects_collection as collection
