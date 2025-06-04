@@ -5,6 +5,7 @@ import ThemeProvider from "./providers/ThemeProvider";
 import Login from "./components/Login";
 import Header from "@/app/components/Header"
 import FaceCapture from "./components/FaceCapture";
+import BiometricSearch from "./components/BiometricSearch";
 
 
 export default function Home() {
@@ -12,7 +13,7 @@ export default function Home() {
     <div>
       <ThemeProvider>
           <Login />
-          <FaceCapture/>
+          <BiometricSearch/>
       </ThemeProvider>
     </div>
   );

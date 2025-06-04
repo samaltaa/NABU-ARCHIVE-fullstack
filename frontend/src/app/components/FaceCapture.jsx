@@ -46,7 +46,7 @@ const FaceCapture = () => {
 
     return (
     <div className="flex flex-col items-center bg-white p-4 border border-gray-300">
-      <div className="flex flex-col items-center mb-4">
+      <div className="flex flex-col items-center mb-4 pt-6">
         <h1 className="font-bold text-xl text-black ">Face Recognition</h1>
         <p className="text-gray-400">Capture subject face for recognition</p>
       </div>
