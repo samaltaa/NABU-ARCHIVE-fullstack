@@ -11,11 +11,18 @@ const BioSearchCard = () => {
                 <div className="flex flex-col items-center bg-gray-100 p-4 gap-4 mt-2 mb-2">
 
                     <div >
-                        <img className="h-40 w-40" src="https://i.redd.it/slsmetea3g2b1.jpg" alt="Lana Del Rey"/>
-                        <div className=" pt-1 pb-2 gap-1">
-                            <span class="inline-flex w-14 items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-red-600/10 ring-inset">Threat: High</span>
-                            <span class="inline-flex w-14 items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-800 ring-1 ring-yellow-600/20 ring-inset">Politics: Liberal</span>
-                            <span class="inline-flex w-14 items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-800 ring-1 ring-yellow-600/20 ring-inset">Party: Dixiecrat</span>
+                        <div className="flex flex-row gap-4 ">
+                            <div className="border border-gray-100 z-0">
+                               <img className="h-40 w-40" src="https://i.redd.it/slsmetea3g2b1.jpg" alt="Lana Del Rey"/>
+                                <div className=" pt-1 pb-2 gap-1">
+                                    <span class="inline-flex w-14 items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-red-600/10 ring-inset">Threat: High</span>
+                                    <span class="inline-flex w-14 items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-800 ring-1 ring-yellow-600/20 ring-inset">Politics: Liberal</span>
+                                    <span class="inline-flex w-14 items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-800 ring-1 ring-yellow-600/20 ring-inset">Party: Dixiecrat</span>
+                                </div> 
+                            </div>
+                            <div className="flex flex-col items-center justify-center gap-1 z-10">
+                                <img className="h-30 w-30 opacity-25 z-10" src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Yoke_and_Arrows.svg" alt="Lana Del Rey"/>
+                            </div>
                         </div>
                         <p className="font-bold">Name: Del Rey, Lana</p> 
                         
