@@ -61,8 +61,9 @@ const FaceCapture = () => {
           
 
             <div 
-              
-            ></div>
+            >
+              <p className="text-green-500 bg-green-100 px-2 rounded-lg">Match found!</p>
+            </div>
 
 
 
