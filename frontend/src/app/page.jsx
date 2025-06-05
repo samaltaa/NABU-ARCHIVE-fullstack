@@ -13,7 +13,6 @@ export default function Home() {
     <div>
       <ThemeProvider>
           <Login />
-          <BiometricSearch/>
       </ThemeProvider>
     </div>
   );

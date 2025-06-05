@@ -29,10 +29,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@router.get("/subjects/", response_model=List[Subject])
-async def get_subjects():
+@router.get("/subjects/")
+async def get_subjects(page: int = 1, limit: int = 10):
     try:
-        subjects = await collection.find().to_list(length=10)
+        skip = (page - 1) * limit
+        total = await collection.count_documents({})
+        subjects = await collection.find().skip(skip).limit(limit).to_list(length=limit)
+
         result = []
         for subject in subjects:
             # Convert _id to string
@@ -47,7 +50,15 @@ async def get_subjects():
                 subject["image"] = base64.b64encode(subject["image"]).decode('utf-8')
                 
             result.append(subject)
-        return result
+
+        return {
+            "subjects": result,
+            "total": total,
+            "page": page,
+            "limit": limit,
+            "pages": (total + limit - 1)  # Calculate total pages  
+        }
+    
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     

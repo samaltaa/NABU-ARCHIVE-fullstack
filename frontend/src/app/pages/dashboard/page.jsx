@@ -13,6 +13,7 @@ export default function Dashboard(){
     return(
         <div className='h-full bg-white'>
             <Grid/>
+            <SubjectForm/>
         </div>
     )
 }
