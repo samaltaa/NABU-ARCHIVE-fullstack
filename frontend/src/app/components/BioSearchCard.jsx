@@ -1,59 +1,63 @@
 import React from "react";
 
-
 const BioSearchCard = () => {
     return (
         <>
-            <div className="flex flex-col items-center bg-white p-4 border border-gray-300 shadow-lg">
+            <div className="flex flex-col items-center bg-white p-4  border border-gray-300 shadow-lg font-mono">
                 <div className="flex flex-col items-center p-2 border border-gray-100 bg-gray-100 h-full w-full">
-                    <h1 className="font-bold text-xl text-black">Matched Subject Details</h1>
+                    <h1 className="font-bold text-xl text-black uppercase tracking-wider">MATCHED SUBJECT DETAILS</h1>
                 </div>
-                <div className="flex flex-col items-center bg-gray-100 p-4 gap-4 mt-2 mb-2">
+                <div className="flex flex-col items-center bg-gray-100 p-4 gap-4 mt-2 mb-2 w-full">
 
-                    <div className="relative">
-                        <div className="flex flex-row ">
-                            <div className=" z-20">
-                               <img className="h-40 w-40 rounded-md" src="https://i.redd.it/slsmetea3g2b1.jpg" alt="Lana Del Rey"/>
-                                <div className=" pt-1 pb-2 gap-1">
-                                    <span class="inline-flex w-14 items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-red-600/10 ring-inset">Threat</span>
-                                    <span class="inline-flex w-14 items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-800 ring-1 ring-yellow-600/20 ring-inset">Liberal</span>
-                                    <span class="inline-flex w-14 items-center justify-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-800 ring-1 ring-yellow-600/20 ring-inset">Dixiecrat</span>
+                    <div className="relative w-full">
+                        <div className="flex flex-row">
+                            <div className="z-20">
+                               <img className="h-40 w-40 border-2 border-gray-400" src="https://i.redd.it/slsmetea3g2b1.jpg" alt="Subject Photograph"/>
+                                <div className="pt-2 pb-2 gap-5 flex flex-wrap">
+                                    <span className="inline-flex items-center bg-red-800 px-2 py-1 text-xs font-bold text-red-100 border border-red-700 uppercase tracking-wide">THREAT</span>
+                                    <span className="inline-flex items-center bg-gray-600 px-2 py-1 text-xs font-semibold text-gray-100 border border-gray-500 uppercase tracking-wide">UNSTABLE</span>
                                 </div> 
                             </div>
                             <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center pointer-events-none z-10">
-                                <img className="w-full h-75 opacity-10 z-10" src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/egyptian-symbol-falcon-granger.jpg" alt="Lana Del Rey"/>
+                                <img className="w-full h-75 opacity-10 z-10" src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/egyptian-symbol-falcon-granger.jpg" alt="Classification Symbol"/>
                             </div>
                         </div>
-                        <p className="font-bold text-gray-600">Name: Del Rey, Lana</p> 
-                        
-                        <p className="font-bold text-gray-600">Location: Room 157, Building A, WI Campus</p>
+                        <div className="relative z-10 opacity-60 mt-3 bg-gray-200 border border-gray-300 p-2">
+                            <p className="font-bold text-black uppercase tracking-wide text-sm">NAME: DEL REY, LANA</p> 
+                            <p className="font-bold text-black uppercase tracking-wide text-sm">LOCATION: ROOM 157, BUILDING A, WI CAMPUS</p>
+                        </div>
                     </div>
             </div>
-            <div className="flex flex-row items-start gap-2">
-                <div className="bg-gray-100 p-2  border border-gray-300 w-[120px] h-[120px] overflow-auto text-xs leading-tight">
-                    <p className="font-bold bg-gray-100 mt-2 mb-1 px-1 border rounded-md">Biological Data</p>
-                    <p>Sex: Female</p>
-                    <p>Chromosomes: XX</p>
-                    <p>Age: 40</p>
-                    <p>Race: White</p>
-                    <p>Blood: B+</p>
-                    <p>Last Menstrual Cycle: 05/10/2025</p>
+            <div className="flex flex-row items-start gap-2 w-full">
+                <div className="bg-gray-200 p-3 border border-gray-300 w-[140px] h-[140px] overflow-auto text-xs leading-relaxed">
+                    <p className="font-bold bg-gray-300 mb-2 px-2 py-1 border border-gray-400 text-black uppercase tracking-wider text-center">BIOLOGICAL DATA</p>
+                    <div className="text-black space-y-1 font-mono">
+                        <p><span className="text-gray-600 uppercase text-xs">SEX:</span> FEMALE</p>
+                        <p><span className="text-gray-600 uppercase text-xs">CHROMO:</span> XX</p>
+                        <p><span className="text-gray-600 uppercase text-xs">RACE:</span> WHITE</p>
+                        <p><span className="text-gray-600 uppercase text-xs">BLOOD:</span> B+</p>
+                        <p><span className="text-gray-600 uppercase text-xs">LMC:</span> 05/10/2025</p>
+                    </div>
                 </div>
 
-                <div className="bg-gray-100 p-2 border border-gray-300 w-[120px] h-[120px] overflow-auto text-xs leading-tight">
-                    <p className="font-bold bg-gray-100 mt-1 mb-1 px-1 border rounded-md">Personal Data</p>
-                    <p>Religion: Catholic</p>
-                    <p>Attendance: Weekly</p>
-                    <p>Friends: Francois Duvalier, David Duke...</p>
-                    <p>Socials: Instagram, Twitter...</p>
+                <div className="bg-gray-200 p-3 border border-gray-300 w-[140px] h-[140px] overflow-auto text-xs leading-relaxed">
+                    <p className="font-bold bg-gray-300 mb-2 px-2 py-1 border border-gray-400 text-black uppercase tracking-wider text-center">PERSONAL DATA</p>
+                    <div className="text-black space-y-1 font-mono">
+                        <p><span className="text-gray-600 uppercase text-xs">ASSOC:</span> FRANCOIS DUVALIER, DONALD TRUMP...</p>
+                        <p><span className="text-gray-600 uppercase text-xs">RELIGION:</span> CATHOLIC</p>
+                        <p><span className="text-gray-600 uppercase text-xs">ATTEND:</span> WEEKLY</p>
+                        <p><span className="text-gray-600 uppercase text-xs">SOCIAL:</span> IG, TW...</p>
+                    </div>
                 </div>
 
-                <div className="bg-gray-100 p-2 border border-gray-300 w-[120px] h-[120px] overflow-auto text-xs leading-tight">
-                    <p className="font-bold bg-gray-100 mt-1 mb-1 px-1 border rounded-md">Criminal Record</p>
-                    <p>Reacord: [agrivated assault, cocaine poss...]</p>
-                    <p>At-Home: 6PM-8AM</p>
-                    <p>At-Work: 9AM-5PM</p>
-                    <p>Common Location: </p>
+                <div className="bg-gray-200 p-3 border border-gray-300 w-[140px] h-[140px] overflow-auto text-xs leading-relaxed">
+                    <p className="font-bold bg-gray-300 mb-2 px-2 py-1 border border-gray-400 text-black uppercase tracking-wider text-center">OFFENSE RECORD</p>
+                    <div className="text-black space-y-1 font-mono">
+                        <p><span className="text-gray-600 uppercase text-xs">RECORD:</span> AGG.ASSAULT, COCA.POSS...</p>
+                        <p><span className="text-gray-600 uppercase text-xs">HOME:</span> 18:00-08:00</p>
+                        <p><span className="text-gray-600 uppercase text-xs">WORK:</span> 09:00-17:00</p>
+                        <p><span className="text-gray-600 uppercase text-xs">COMMON:</span> [CLASSIFIED]</p>
+                    </div>
                 </div>
                 </div>
                 
