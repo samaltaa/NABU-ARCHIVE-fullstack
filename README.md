@@ -222,8 +222,11 @@ The application implements a secure authentication system:
 ![Landing Page](screenshots/afterupdated1.png)
 ![Subject Management](screenshots/afterupdated3.png)
 
-#### Subject Detail Modal
+#### Subject Detail Modal When Subject PreviewCard Clicked
 ![Subject Detail Modal](screenshots/subjectcard.png)
+
+### Facial Recognition Integration--Facial Scanning and Match Detail Modal
+![Subject Details Upon Facial Recognition Lookup](screenshots/facerecognition.png)
 
 #### Authentication Interface
 ![Login Interface](screenshots/login.png)
