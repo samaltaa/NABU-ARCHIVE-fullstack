@@ -43,130 +43,147 @@ function Grid() {
     if (subjects.length === 0) return <div className="flex justify-center items-center py-24">No subjects found</div>;
 
     return (
-    <div className="relative z-0 bg-white py-12 mt-4 sm:py-12">
+    <div className="relative z-0 bg-gray-100 py-12 mt-4 sm:py-12 font-mono">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
             {/* Header Section */}
             <div className="mx-auto max-w-xl mb-12">
-                <h2 className="text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl">
-                    Browse Registered Individuals
-                </h2>
-                <p className="mt-2 text-lg text-gray-600">
-                    This interface displays a complete list of 
-                    individuals enrolled in the system. Each entry 
-                    includes essential identifying information and 
-                    biometric reference data. Authorized personnel 
-                    may filter, search, and review subject records 
-                    for operational or administrative purposes.
-                </p>
+                <div className="bg-white border-2 border-gray-400 shadow-lg p-6">
+                    <div className="bg-gray-100 border border-gray-300 p-4 mb-4">
+                        <h2 className="text-2xl font-bold tracking-wider text-black uppercase text-center sm:text-3xl">
+                            REGISTERED INDIVIDUALS
+                        </h2>
+                    </div>
+                    <div className="bg-gray-200 border border-gray-300 p-3">
+                        <p className="text-sm text-black font-semibold uppercase tracking-wide leading-relaxed">
+                            AUTHORIZED ACCESS ONLY. THIS INTERFACE DISPLAYS COMPLETE 
+                            REGISTRY OF ENROLLED SUBJECTS. EACH ENTRY CONTAINS 
+                            ESSENTIAL IDENTIFICATION AND BIOMETRIC REFERENCE DATA. 
+                            PERSONNEL MAY FILTER, SEARCH, AND REVIEW RECORDS FOR 
+                            OPERATIONAL PURPOSES.
+                        </p>
+                    </div>
+                </div>
             </div>
 
             {/* Subjects Grid */}
-            <div className="mb-4 mx-auto max-w-4xl">
-                <ul role="list" className="grid gap-6 grid-cols-1 md:grid-cols-2">
-                    {subjects.map((subject) => (
-                        <li key={subject._id}>
-                            <SubjectCardPreview
-                                subject={subject}
-                                onClick={() => handlePreviewClick(subject)}
-                            />
-                        </li>
-                    ))}
-                </ul>
+            <div className="mb-2 mx-auto max-w-4xl">
+                <div className="bg-white border-2 border-gray-400 shadow-lg p-4">
+                    <div className="bg-gray-100 border border-gray-300 p-2 mb-4">
+                        <h3 className="font-bold text-black uppercase tracking-wider text-center">
+                            SUBJECT REGISTRY
+                        </h3>
+                    </div>
+                    <ul role="list" className="grid gap-4 grid-cols-1 md:grid-cols-2 bg-gray-200 p-4 border border-gray-300">
+                        {subjects.map((subject) => (
+                            <li key={subject._id} className="bg-white border border-gray-400 shadow-sm">
+                                <SubjectCardPreview
+                                    subject={subject}
+                                    onClick={() => handlePreviewClick(subject)}
+                                />
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             </div>
 
             {/* Pagination Section */}
             <div className="flex justify-center items-center">
-                <div className="flex items-center gap-2">
-                    <button
-                        onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-                        disabled={currentPage === 1}
-                        className="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                    >
-                        Previous
-                    </button>
+                <div className="bg-white border-2 border-gray-400 shadow-lg p-4">
+                    
+                    <div className="bg-gray-200 border border-gray-300 p-3">
+                        <div className="flex items-center gap-2">
+                            <button
+                                onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                                disabled={currentPage === 1}
+                                className="px-3 py-2 bg-gray-600 text-gray-100 border border-gray-500 font-bold uppercase tracking-wide text-xs hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                            >
+                                PREV
+                            </button>
 
-                    <div className="flex gap-1 items-center">
-                        {(() => {
-                            const maxVisiblePages = 10;
-                            const pages = [];
-                            
-                            if (totalPages <= maxVisiblePages) {
-                                // Show all pages if total is 10 or less
-                                for (let i = 1; i <= totalPages; i++) {
-                                    pages.push(
-                                        <button
-                                            key={i}
-                                            onClick={() => setCurrentPage(i)}
-                                            className={`px-3 py-2 rounded-md transition-colors ${
-                                                currentPage === i 
-                                                    ? 'bg-blue-500 text-white hover:bg-blue-600' 
-                                                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                                            }`}
-                                        >
-                                            {i}
-                                        </button>
-                                    );
-                                }
-                            } else {
-                                // Show first few pages, ellipsis, and last few pages
-                                const showFirst = Math.min(7, maxVisiblePages - 3);
-                                const showLast = 3;
-                                
-                                // First pages
-                                for (let i = 1; i <= showFirst; i++) {
-                                    pages.push(
-                                        <button
-                                            key={i}
-                                            onClick={() => setCurrentPage(i)}
-                                            className={`px-3 py-2 rounded-md transition-colors ${
-                                                currentPage === i 
-                                                    ? 'bg-blue-500 text-white hover:bg-blue-600' 
-                                                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                                            }`}
-                                        >
-                                            {i}
-                                        </button>
-                                    );
-                                }
-                                
-                                // Ellipsis
-                                if (showFirst < totalPages - showLast) {
-                                    pages.push(
-                                        <span key="ellipsis" className="px-3 py-2 text-gray-500">
-                                            ...
-                                        </span>
-                                    );
-                                }
-                                
-                                // Last pages
-                                for (let i = Math.max(showFirst + 1, totalPages - showLast + 1); i <= totalPages; i++) {
-                                    pages.push(
-                                        <button
-                                            key={i}
-                                            onClick={() => setCurrentPage(i)}
-                                            className={`px-3 py-2 rounded-md transition-colors ${
-                                                currentPage === i 
-                                                    ? 'bg-blue-500 text-white hover:bg-blue-600' 
-                                                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                                            }`}
-                                        >
-                                            {i}
-                                        </button>
-                                    );
-                                }
-                            }
-                            
-                            return pages;
-                        })()}
+                            <div className="flex gap-1 items-center">
+                                {(() => {
+                                    const maxVisiblePages = 10;
+                                    const pages = [];
+                                    
+                                    if (totalPages <= maxVisiblePages) {
+                                        // Show all pages if total is 10 or less
+                                        for (let i = 1; i <= totalPages; i++) {
+                                            pages.push(
+                                                <button
+                                                    key={i}
+                                                    onClick={() => setCurrentPage(i)}
+                                                    className={`px-2 py-1 border font-bold uppercase tracking-wide text-xs transition-colors ${
+                                                        currentPage === i 
+                                                            ? 'bg-red-800 text-red-100 border-red-700 hover:bg-red-900' 
+                                                            : 'bg-gray-600 text-gray-100 border-gray-500 hover:bg-gray-700'
+                                                    }`}
+                                                >
+                                                    {i.toString().padStart(2, '0')}
+                                                </button>
+                                            );
+                                        }
+                                    } else {
+                                        // Show first few pages, ellipsis, and last few pages
+                                        const showFirst = Math.min(7, maxVisiblePages - 3);
+                                        const showLast = 3;
+                                        
+                                        // First pages
+                                        for (let i = 1; i <= showFirst; i++) {
+                                            pages.push(
+                                                <button
+                                                    key={i}
+                                                    onClick={() => setCurrentPage(i)}
+                                                    className={`px-2 py-1 border font-bold uppercase tracking-wide text-xs transition-colors ${
+                                                        currentPage === i 
+                                                            ? 'bg-red-800 text-red-100 border-red-700 hover:bg-red-900' 
+                                                            : 'bg-gray-600 text-gray-100 border-gray-500 hover:bg-gray-700'
+                                                    }`}
+                                                >
+                                                    {i.toString().padStart(2, '0')}
+                                                </button>
+                                            );
+                                        }
+                                        
+                                        // Ellipsis
+                                        if (showFirst < totalPages - showLast) {
+                                            pages.push(
+                                                <span key="ellipsis" className="px-2 py-1 text-gray-600 font-bold">
+                                                    ...
+                                                </span>
+                                            );
+                                        }
+                                        
+                                        // Last pages
+                                        for (let i = Math.max(showFirst + 1, totalPages - showLast + 1); i <= totalPages; i++) {
+                                            pages.push(
+                                                <button
+                                                    key={i}
+                                                    onClick={() => setCurrentPage(i)}
+                                                    className={`px-2 py-1 border font-bold uppercase tracking-wide text-xs transition-colors ${
+                                                        currentPage === i 
+                                                            ? 'bg-red-800 text-red-100 border-red-700 hover:bg-red-900' 
+                                                            : 'bg-gray-600 text-gray-100 border-gray-500 hover:bg-gray-700'
+                                                    }`}
+                                                >
+                                                    {i.toString().padStart(2, '0')}
+                                                </button>
+                                            );
+                                        }
+                                    }
+                                    
+                                    return pages;
+                                })()}
+                            </div>
+
+                            <button
+                                onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+                                disabled={currentPage === totalPages}
+                                className="px-3 py-2 bg-gray-600 text-gray-100 border border-gray-500 font-bold uppercase tracking-wide text-xs hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                            >
+                                NEXT
+                            </button>
+                        </div>
                     </div>
-
-                    <button
-                        onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-                        disabled={currentPage === totalPages}
-                        className="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                    >
-                        Next
-                    </button>
                 </div>
             </div>
         </div>

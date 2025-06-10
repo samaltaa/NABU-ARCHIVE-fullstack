@@ -60,144 +60,178 @@ export default function SubjectForm({onSubmit}) {
     };
 
     return (
-        <div className="bg-white py-8 px-6 shadow-md rounded-lg border border-gray-200 max-w-2xl mx-auto">
-            <h2 className="text-2xl font-semibold tracking-tight text-gray-900 mb-6">
-                Submit Information
-            </h2>
-            <form 
-                id="subject-form"
-                className="space-y-6"
-                onSubmit={handleSubmit(handleFormSubmit)}
-                encType="multipart/form-data"
-            >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                        <label className="block text-sm font-medium text-gray-700">ID: </label>
-                        <input
-                            type="text"
-                            placeholder="ID"
-                            className="w-full text-black rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 px-3 py-2 border"
-                            {...register('id', { required:'ID is required' })}
-                        />
-                        {errors.id && <p className="text-red-500 text-sm mt-1">{errors.id.message}</p>}
-                    </div>
-
-                    <div className="space-y-2">
-                        <label className="block text-sm font-medium text-gray-700">First Name: </label>
-                        <input
-                            type="text"
-                            placeholder="First Name"
-                            className="w-full text-black rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 px-3 py-2 border"
-                            {...register('first_name', { required: 'First name is required' })}
-                        />
-                        {errors.first_name && <p className="text-red-500 text-sm mt-1">{errors.first_name.message}</p>}
-                    </div>
-
-                    <div className="space-y-2">
-                        <label className="block text-sm font-medium text-gray-700">Last Name: </label>
-                        <input 
-                            type="text"
-                            placeholder="Last Name"
-                            className="w-full text-black rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 px-3 py-2 border"
-                            {...register('last_name', { required: 'Last name is required' })}
-                        />
-                        {errors.last_name && <p className="text-red-500 text-sm mt-1">{errors.last_name.message}</p>}
-                    </div>
-
-                    <div className="space-y-2">
-                        <label className="block text-sm font-medium text-gray-700">Sex: </label>
-                        <select 
-                            className="w-full text-black rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 px-3 py-2 border"
-                            {...register('sex', { required: 'Sex is required'})}
-                        >
-                            <option value="">Select</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                        </select>
-                        {errors.sex && <p className="text-red-500 text-sm mt-1">{errors.sex.message}</p>}
-                    </div>
-                </div>
-
-                <div className="border-t border-gray-200 pt-6">
-                    <h3 className="text-lg font-bold text-gray-900 mb-4">Address Information:</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="space-y-2">
-                            <label className="block text-sm font-medium text-gray-700">Street: </label>
-                            <input 
-                                type="text"
-                                placeholder="Street"
-                                className="w-full text-black rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 px-3 py-2 border"
-                                {...register('street', { required: 'Street is required' })}/>
-                            {errors.street && <p className="text-red-500 text-sm mt-1">{errors.street.message}</p>}
+        <div className="bg-white border-2 border-gray-400 shadow-lg font-mono max-w-4xl mx-auto">
+            <div className="bg-gray-100 border border-gray-300 p-4">
+                <h2 className="text-xl font-bold tracking-wider text-black uppercase text-center">
+                    SUBJECT REGISTRATION FORM
+                </h2>
+            </div>
+            
+            <div className="bg-gray-200 p-6">
+                <form 
+                    id="subject-form"
+                    className="space-y-6"
+                    onSubmit={handleSubmit(handleFormSubmit)}
+                    encType="multipart/form-data"
+                >
+                    {/* Personal Information Section */}
+                    <div className="bg-white border border-gray-400 p-4">
+                        <div className="bg-gray-300 border border-gray-400 p-2 mb-4">
+                            <h3 className="font-bold text-black uppercase tracking-wider text-center text-sm">
+                                PERSONAL IDENTIFICATION
+                            </h3>
                         </div>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="space-y-2">
+                                <label className="block text-xs font-bold text-gray-600 uppercase tracking-wide">SUBJECT ID:</label>
+                                <input
+                                    type="text"
+                                    placeholder="ENTER ID"
+                                    className="w-full text-black bg-gray-100 border border-gray-400 px-3 py-2 text-sm font-mono uppercase tracking-wide focus:bg-white focus:border-gray-600 focus:outline-none"
+                                    {...register('id', { required:'ID is required' })}
+                                />
+                                {errors.id && <p className="text-red-800 text-xs mt-1 font-bold uppercase">{errors.id.message}</p>}
+                            </div>
 
-                        <div className="space-y-2">
-                            <label className="block text-sm font-medium text-gray-900">City: </label>
-                            <input 
-                                type="text"
-                                placeholder="City"
-                                className="w-full text-black rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 px-3 py-2 border"
-                                {...register('city', { required: 'City is required' })}/>
-                            {errors.city && <p className="text-red-500 text-sm mt-1">{errors.city.message}</p>}
-                        </div>
+                            <div className="space-y-2">
+                                <label className="block text-xs font-bold text-gray-600 uppercase tracking-wide">FIRST NAME:</label>
+                                <input
+                                    type="text"
+                                    placeholder="ENTER FIRST NAME"
+                                    className="w-full text-black bg-gray-100 border border-gray-400 px-3 py-2 text-sm font-mono uppercase tracking-wide focus:bg-white focus:border-gray-600 focus:outline-none"
+                                    {...register('first_name', { required: 'First name is required' })}
+                                />
+                                {errors.first_name && <p className="text-red-800 text-xs mt-1 font-bold uppercase">{errors.first_name.message}</p>}
+                            </div>
 
-                        <div className="space-y-2">
-                            <label className="block text-sm font-medium text-gray-700">State: </label>
-                            <input 
-                                type="text"
-                                placeholder="State"
-                                className="w-full text-black rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 px-3 py-2 border"
-                                {...register('state', { required: 'State is required' })}/>
-                            {errors.state && <p className="text-red-500 text-sm mt-1">{errors.state.message}</p>}
-                        </div>
+                            <div className="space-y-2">
+                                <label className="block text-xs font-bold text-gray-600 uppercase tracking-wide">LAST NAME:</label>
+                                <input 
+                                    type="text"
+                                    placeholder="ENTER LAST NAME"
+                                    className="w-full text-black bg-gray-100 border border-gray-400 px-3 py-2 text-sm font-mono uppercase tracking-wide focus:bg-white focus:border-gray-600 focus:outline-none"
+                                    {...register('last_name', { required: 'Last name is required' })}
+                                />
+                                {errors.last_name && <p className="text-red-800 text-xs mt-1 font-bold uppercase">{errors.last_name.message}</p>}
+                            </div>
 
-                        <div className="space-y-2">
-                            <label className="block text-sm font-medium text-gray-700">Zip Code: </label>
-                            <input 
-                                type="text"
-                                placeholder="Zip Code"
-                                className="w-full text-black rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 px-3 py-2 border"
-                                {...register('zip_code', { required: 'Zip code is required' })}/>
-                            {errors.zip_code && <p className="text-red-500 text-sm mt-1">{errors.zip_code.message}</p>}
+                            <div className="space-y-2">
+                                <label className="block text-xs font-bold text-gray-600 uppercase tracking-wide">BIOLOGICAL SEX:</label>
+                                <select 
+                                    className="w-full text-black bg-gray-100 border border-gray-400 px-3 py-2 text-sm font-mono uppercase tracking-wide focus:bg-white focus:border-gray-600 focus:outline-none"
+                                    {...register('sex', { required: 'Sex is required'})}
+                                >
+                                    <option value="">SELECT CLASSIFICATION</option>
+                                    <option value="Male">MALE</option>
+                                    <option value="Female">FEMALE</option>
+                                </select>
+                                {errors.sex && <p className="text-red-800 text-xs mt-1 font-bold uppercase">{errors.sex.message}</p>}
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div className="border-t border-gray-200 pt-6">
-                    <h3 className="text-lg font-bold text-gray-900 mb-4">Bio-demographic Data:</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="space-y-2">
-                            <label className="block text-sm font-medium text-gray-700">Date of Birth: </label>
-                            <input 
-                                type="date"
-                                className="w-full text-black rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 px-3 py-2 border"
-                                {...register('dob', { required: 'Date of birth is required' })}/>
-                            {errors.dob && <p className="text-red-500 text-sm mt-1">{errors.dob.message}</p>}
+                    {/* Address Information Section */}
+                    <div className="bg-white border border-gray-400 p-4">
+                        <div className="bg-gray-300 border border-gray-400 p-2 mb-4">
+                            <h3 className="font-bold text-black uppercase tracking-wider text-center text-sm">
+                                RESIDENTIAL ADDRESS
+                            </h3>
                         </div>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="space-y-2">
+                                <label className="block text-xs font-bold text-gray-600 uppercase tracking-wide">STREET ADDRESS:</label>
+                                <input 
+                                    type="text"
+                                    placeholder="ENTER STREET ADDRESS"
+                                    className="w-full text-black bg-gray-100 border border-gray-400 px-3 py-2 text-sm font-mono uppercase tracking-wide focus:bg-white focus:border-gray-600 focus:outline-none"
+                                    {...register('street', { required: 'Street is required' })}/>
+                                {errors.street && <p className="text-red-800 text-xs mt-1 font-bold uppercase">{errors.street.message}</p>}
+                            </div>
 
-                        <div className="space-y-2">
-                            <label className="block text-sm font-medium text-gray-700">Full-face Image: </label>
-                            <input 
-                                type="file"
-                                accept=".jpg, .jpeg, .png"
-                                className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
-                                {...register('image', { required: 'Image is required' })}/>
-                            {errors.image && <p className="text-red-500 text-sm mt-1">{errors.image.message}</p>}
-                            <p className="text-xs text-gray-300">face will be encoded for facial recognition.</p>
+                            <div className="space-y-2">
+                                <label className="block text-xs font-bold text-gray-600 uppercase tracking-wide">CITY:</label>
+                                <input 
+                                    type="text"
+                                    placeholder="ENTER CITY"
+                                    className="w-full text-black bg-gray-100 border border-gray-400 px-3 py-2 text-sm font-mono uppercase tracking-wide focus:bg-white focus:border-gray-600 focus:outline-none"
+                                    {...register('city', { required: 'City is required' })}/>
+                                {errors.city && <p className="text-red-800 text-xs mt-1 font-bold uppercase">{errors.city.message}</p>}
+                            </div>
+
+                            <div className="space-y-2">
+                                <label className="block text-xs font-bold text-gray-600 uppercase tracking-wide">STATE/PROVINCE:</label>
+                                <input 
+                                    type="text"
+                                    placeholder="ENTER STATE"
+                                    className="w-full text-black bg-gray-100 border border-gray-400 px-3 py-2 text-sm font-mono uppercase tracking-wide focus:bg-white focus:border-gray-600 focus:outline-none"
+                                    {...register('state', { required: 'State is required' })}/>
+                                {errors.state && <p className="text-red-800 text-xs mt-1 font-bold uppercase">{errors.state.message}</p>}
+                            </div>
+
+                            <div className="space-y-2">
+                                <label className="block text-xs font-bold text-gray-600 uppercase tracking-wide">POSTAL CODE:</label>
+                                <input 
+                                    type="text"
+                                    placeholder="ENTER ZIP CODE"
+                                    className="w-full text-black bg-gray-100 border border-gray-400 px-3 py-2 text-sm font-mono uppercase tracking-wide focus:bg-white focus:border-gray-600 focus:outline-none"
+                                    {...register('zip_code', { required: 'Zip code is required' })}/>
+                                {errors.zip_code && <p className="text-red-800 text-xs mt-1 font-bold uppercase">{errors.zip_code.message}</p>}
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div className="flex justify-end pt-6">
-                    <button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                        {isSubmitting ? 'Submitting...' : 'Submit'}
-                    </button>
-                </div>
-            </form>
+                    {/* Bio-demographic Data Section */}
+                    <div className="bg-white border border-gray-400 p-4">
+                        <div className="bg-gray-300 border border-gray-400 p-2 mb-4">
+                            <h3 className="font-bold text-black uppercase tracking-wider text-center text-sm">
+                                BIOMETRIC DATA COLLECTION
+                            </h3>
+                        </div>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="space-y-2">
+                                <label className="block text-xs font-bold text-gray-600 uppercase tracking-wide">DATE OF BIRTH:</label>
+                                <input 
+                                    type="date"
+                                    className="w-full text-black bg-gray-100 border border-gray-400 px-3 py-2 text-sm font-mono uppercase tracking-wide focus:bg-white focus:border-gray-600 focus:outline-none"
+                                    {...register('dob', { required: 'Date of birth is required' })}/>
+                                {errors.dob && <p className="text-red-800 text-xs mt-1 font-bold uppercase">{errors.dob.message}</p>}
+                            </div>
+
+                            <div className="space-y-2">
+                                <label className="block text-xs font-bold text-gray-600 uppercase tracking-wide">FACIAL RECOGNITION IMAGE:</label>
+                                <div className="bg-gray-100 border border-gray-400 p-2">
+                                    <input 
+                                        type="file"
+                                        accept=".jpg, .jpeg, .png"
+                                        className="w-full text-xs text-black file:mr-2 file:py-1 file:px-2 file:border file:border-gray-400 file:text-xs file:font-bold file:bg-gray-600 file:text-gray-100 file:uppercase file:tracking-wide hover:file:bg-gray-700"
+                                        {...register('image', { required: 'Image is required' })}/>
+                                    {errors.image && <p className="text-red-800 text-xs mt-1 font-bold uppercase">{errors.image.message}</p>}
+                                    <p className="text-xs text-gray-600 mt-2 font-bold uppercase tracking-wide">
+                                        WARNING: FACIAL DATA WILL BE ENCODED FOR BIOMETRIC IDENTIFICATION
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Submit Section */}
+                    <div className="bg-white border border-gray-400 p-4">
+                        
+                        <div className="flex justify-center">
+                            <button
+                                type="submit"
+                                disabled={isSubmitting}
+                                className="px-6 py-3 bg-red-800 text-red-100 border border-red-700 font-bold uppercase tracking-wider text-sm hover:bg-red-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                {isSubmitting ? 'PROCESSING...' : 'REGISTER SUBJECT'}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }
