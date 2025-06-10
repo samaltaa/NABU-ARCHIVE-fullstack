@@ -218,8 +218,8 @@ The application implements a secure authentication system:
 #### Subject Registration Interface
 ![Subject Registration](screenshots/upload_preview.png)
 
-#### Updated Dashboard with Database Integration
-![Updated Dashboard](screenshots/afterupdated1.png)
+#### Updated Landing Page and Subject Grid
+![Landing Page](screenshots/afterupdated1.png)
 ![Subject Management](screenshots/afterupdated3.png)
 
 #### Subject Detail Modal
